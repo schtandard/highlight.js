@@ -142,12 +142,16 @@ export default function(hljs) {
   });
   var NUMBER = {
     className: 'number',
-    begin: /[+-\s]*(?:"|')?\d+/
+    variants: [
+      {begin: /[+-\s]*\d+/},
+      {begin: /[+-\s]*'[0-7]+/},
+      {begin: /[+-\s]*"[\dA-F]+/}
+    ]
   };
   var DIMEN = {
     className: 'number',
     variants: [
-      {begin: /[+-\s]*(?:"|')?\d+\s*(?:em|ex|mu|(?:true\s*)?(?:pt|pc|in|bp|cm|mm|dd|cc|sp))\b/},
+      {begin: /[+-\s]*(?:\d+|'[0-7]+|"[\dA-F]+)\s*(?:em|ex|mu|(?:true\s*)?(?:pt|pc|in|bp|cm|mm|dd|cc|sp))\b/},
       {begin: /[+-\s]*\d*[\.,]\d*(?:pt|)\s*(?:em|ex|mu|(?:true\s*)?(?:pt|pc|in|bp|cm|mm|dd|cc|sp))\b/}
     ]
   };
