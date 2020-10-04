@@ -140,11 +140,24 @@ export default function(hljs) {
       }
     ]
   });
+  var NUMBER = {
+    className: 'number',
+    begin: /[+-\s]*(?:"|')?\d+/
+  };
+  var DIMEN = {
+    className: 'number',
+    variants: [
+      {begin: /[+-\s]*(?:"|')?\d+\s*(?:em|ex|mu|(?:true\s*)?(?:pt|pc|in|bp|cm|mm|dd|cc|sp))/},
+      {begin: /[+-\s]*\d*[\.,]\d*(?:pt|)\s*(?:em|ex|mu|(?:true\s*)?(?:pt|pc|in|bp|cm|mm|dd|cc|sp))/}
+    ]
+  };
   return {
     name: 'LaTeX',
     aliases: ['TeX'],
     contains: [
       VERBATIM,
+      DIMEN,
+      NUMBER,
       CONTROL_SEQUENCE,
       ACTIVE_CHAR,
       MACRO_PARAM,
