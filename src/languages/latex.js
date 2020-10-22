@@ -31,13 +31,14 @@ export default function(hljs) {
       if (modes.length) {
         return hljs.inherit(
           {
+            relevance: 0,
             contains: MODE_SUBCHAIN(modes[0]),
             starts: MODE_CHAIN(modes.slice(1), false)
           },
           skeleton
         );
       } else {
-        return {};
+        return {relevance: 0};
       }
     } else {
       return modes;
@@ -49,6 +50,7 @@ export default function(hljs) {
         return [hljs.inherit(
           {starts: {
             endsParent: true,
+            relevance: 0,
             contains: MODE_SUBCHAIN(modes.slice(1))
           }},
           modes[0]
